@@ -41,6 +41,8 @@ def get_git_status():
         index = mo.group('X')
         worktree = mo.group('Y')
         filename = mo.group('to')
+        # TODO: If filename starts with quote, unquote the filename.
+        # Possibly use git status -z instead of --porcelain
         if 'U' in (index, worktree):
             unmerged.add(filename)
         elif (index, worktree) in (('D', 'D'), ('A', 'A')):
