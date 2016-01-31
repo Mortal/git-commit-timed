@@ -110,7 +110,7 @@ def main():
         ('--date', commit_time.isoformat()) +
         (('-a',) if args.all else ()) +
         (('-m', args.message) if args.message is not None else ()) +
-        tuple(filenames))
+        ('--',) + tuple(filenames))
     subprocess.check_call(commit_cmdline)
 
 
