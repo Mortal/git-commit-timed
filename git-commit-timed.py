@@ -111,7 +111,10 @@ def main():
         (('-a',) if args.all else ()) +
         (('-m', args.message) if args.message is not None else ()) +
         ('--',) + tuple(filenames))
-    subprocess.check_call(commit_cmdline)
+    try:
+        subprocess.check_call(commit_cmdline)
+    except subprocess.CalledProcessError as exn:
+        raise SystemExit(exn.returncode)
 
 
 if __name__ == "__main__":
